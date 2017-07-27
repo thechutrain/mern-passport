@@ -1,7 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
-const mongoose = require('mongoose')
 const app = express()
 const PORT = process.env.PORT || 8080
 
@@ -11,23 +10,7 @@ app.use(
 		extended: false
 	})
 )
-
-/* Mongo Database
-* - this is where we set up our connection to the mongo database
-*/
-mongoose.promise = Promise
-if (process.env.MONGODB_URI) {
-	mongoose.connect(process.env.MONGODB_URI)
-} else {
-	mongoose.connect('mongodb://localhost/mern-boilerplate') // local mongo url
-}
-const db = mongoose.connection
-db.on('error', err => {
-	console.log(`There was an error connecting to the database: ${err}`)
-})
-db.once('open', () => {
-	console.log('You have successfully connected to your mongo database')
-})
+app.use(bodyParser.json())
 
 /* Express app ROUTING
 * - this is where we set up the API routes for our application

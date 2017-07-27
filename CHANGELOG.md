@@ -10,23 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - changelog.md
 - added project tasks on GitHub
 
-## [0.0.2] - 2017-07-27
-### Added
-- setup dev environment using concurrently package
-- basic express server with morgan, bodyParser and one route for testing
 
-
-## [0.0.3] - 2017-07-27
-### Added
-- added Mongo connection with mongoose
-- added a LostItem model
-
-## [0.0.5] - 2017-07-27
-### Changed
-- put apiRoutes inside an express router and took it out of server.js
-
-### Added
-- added Create, Read, Delete actions to my HTTP methods
 <!-- ## [Unreleased]
 
 ## [1.0.0] - 2017-06-20
