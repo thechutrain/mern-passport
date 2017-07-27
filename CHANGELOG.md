@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - restructured models folder to be inside db, and made a user schema
 
+## [0.0.2] - 2017-07-27
+### Added
+- a route for creating a new user & works properly with the hashing
 
 <!-- ## [Unreleased]
 
