@@ -16,7 +16,7 @@ app.use(bodyParser.json())
 require('./db') // loads our connection to the mongo database
 
 /* Express app ROUTING */
-app.use(require('./controllers/apiRoutes'))
+app.use('/auth', require('./auth'))
 // app.get('/api/data', (req, res) => {
 // 	res.json({ data: ['a', 'b', 'c'] })
 // })

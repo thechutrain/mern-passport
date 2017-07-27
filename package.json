@@ -5,6 +5,7 @@
 	"dependencies": {
 		"axios": "^0.16.2",
 		"bcrypt": "^1.0.2",
+		"bcryptjs": "^2.4.3",
 		"body-parser": "^1.17.2",
 		"express": "^4.15.3",
 		"mongoose": "^4.11.4",
