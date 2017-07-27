@@ -12,10 +12,10 @@ app.use(
 )
 app.use(bodyParser.json())
 
-/* Express app ROUTING
-* - this is where we set up the API routes for our application
-* - Remember those 4 HTTP verbs ;)
-*/
+// === Database =====
+require('./db') // loads our connection to the mongo database
+
+/* Express app ROUTING */
 app.use(require('./controllers/apiRoutes'))
 // app.get('/api/data', (req, res) => {
 // 	res.json({ data: ['a', 'b', 'c'] })
