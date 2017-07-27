@@ -7,8 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.0.1] - 2017-07-27
 ### Added
-- changelog.md
-- added project tasks on GitHub
+- restructured models folder to be inside db, and made a user schema
 
 
 <!-- ## [Unreleased]
