@@ -1,0 +1,26 @@
+{
+	"name": "react-template",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"axios": "^0.16.2",
+		"body-parser": "^1.17.2",
+		"express": "^4.15.3",
+		"mongoose": "^4.11.4",
+		"morgan": "^1.8.2",
+		"react": "^15.5.4",
+		"react-dom": "^15.5.4"
+	},
+	"devDependencies": {
+		"concurrently": "^3.5.0",
+		"react-scripts": "1.0.7"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test --env=jsdom",
+		"eject": "react-scripts eject",
+		"dev": "concurrently \"react-scripts start\" \"nodemon server/server.js\""
+	},
+	"proxy": "http://localhost:8080"
+}
