@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 
 class LoginForm extends Component {
 	constructor() {
 		super()
 		this.state = {
 			email: '',
-			password: ''
+			password: '',
+			redirectTo: null
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
@@ -22,9 +24,13 @@ class LoginForm extends Component {
 		console.log('handleSubmit')
 		this.props._login(this.state.email, this.state.password)
 		// clean up the form
+		// this.setState({
+		// 	email: '',
+		// 	password: ''
+		// })
+		// redirect - will clean form
 		this.setState({
-			email: '',
-			password: ''
+			redirectTo: '/'
 		})
 		// axios
 		// 	.post('/auth/login', {
@@ -40,26 +46,30 @@ class LoginForm extends Component {
 	}
 
 	render() {
-		return (
-			<div className="LoginForm">
-				<h1>Login form</h1>
-				<label htmlFor="email">Email: </label>
-				<input
-					type="text"
-					name="email"
-					value={this.state.email}
-					onChange={this.handleChange}
-				/>
-				<label htmlFor="password">Password: </label>
-				<input
-					type="password"
-					name="password"
-					value={this.state.password}
-					onChange={this.handleChange}
-				/>
-				<button onClick={this.handleSubmit}>Login</button>
-			</div>
-		)
+		if (this.state.redirectTo) {
+			return <Redirect to={{ pathname: this.state.redirectTo }} />
+		} else {
+			return (
+				<div className="LoginForm">
+					<h1>Login form</h1>
+					<label htmlFor="email">Email: </label>
+					<input
+						type="text"
+						name="email"
+						value={this.state.email}
+						onChange={this.handleChange}
+					/>
+					<label htmlFor="password">Password: </label>
+					<input
+						type="password"
+						name="password"
+						value={this.state.password}
+						onChange={this.handleChange}
+					/>
+					<button onClick={this.handleSubmit}>Login</button>
+				</div>
+			)
+		}
 	}
 }
 
