@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import './App.css'
 import LoginForm from './components/LoginForm'
+import SignupForm from './components/SignupForm'
 
 class App extends Component {
 	constructor() {
@@ -68,7 +69,10 @@ class App extends Component {
 	render() {
 		const formBlock = this.state.loggedIn
 			? null
-			: <LoginForm _login={this._login} />
+			: <div>
+					<LoginForm _login={this._login} />
+					<SignupForm />
+				</div>
 		const logoutBlock = this.state.loggedIn
 			? <button onClick={this._logout}>LOGOUT</button>
 			: null
