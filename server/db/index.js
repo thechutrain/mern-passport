@@ -2,7 +2,7 @@
 * - this is where we set up our connection to the mongo database
 */
 const mongoose = require('mongoose')
-mongoose.promise = Promise
+mongoose.Promise = global.Promise
 const MONGO_URL = 'mongodb://localhost/mern-passport'
 
 if (process.env.MONGODB_URI) {
