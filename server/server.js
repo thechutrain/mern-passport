@@ -42,35 +42,9 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 /* Express app ROUTING */
-// ==== ROUTES FOR TESTING ======
-app.get('/login', (req, res) => {
-	var path = require('path')
-	if (req.user) {
-		console.log('YOU ARE SIGNED IN!!!!')
-		return res.redirect('/logout')
-	} else {
-		return res.sendFile(path.join(__dirname, './html/login.html'))
-	}
-})
-app.get('/logout', (req, res) => {
-	var path = require('path')
-	res.sendFile(path.join(__dirname, './html/logout.html'))
-})
-app.get('/home', (req, res, next) => {
-	var path = require('path')
-	passport.authenticate('local', function(err, user, info) {
-		console.log('USER from passport.authenticate')
-		console.log(user)
-		return res.json({ msg: 'yo' })
-	})(req, res, next)
-	// res.sendFile(path.join(__dirname, './html/home.html'))
-})
-
 app.use('/auth', require('./auth'))
-// app.get('/api/data', (req, res) => {
-// 	res.json({ data: ['a', 'b', 'c'] })
-// })
 
+// ====== Error handler ====
 app.use(function(err, req, res, next) {
 	console.log('====== ERROR =======')
 	console.error(err.stack)
