@@ -1,60 +1,84 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import './App.css'
-import DisplayItems from './components/DisplayItems'
-import AddItemForm from './components/AddItem'
+import LoginForm from './components/LoginForm'
 
 class App extends Component {
 	constructor() {
 		super()
 		this.state = {
-			lostItems: []
+			loggedIn: false,
+			user: {}
 		}
-		this._alertMe = this._alertMe.bind(this)
-		this.makeNewItem = this.makeNewItem.bind(this)
+		this._logout = this._logout.bind(this)
+		this._login = this._login.bind(this)
 	}
 
 	componentDidMount() {
-		axios.get('/api/lostitem').then(response => {
+		axios.get('/auth/user').then(response => {
 			console.log(response.data)
-			this.setState({
-				lostItems: response.data
-			})
+			if (!!response.data.user) {
+				console.log('THERE IS A USER')
+				this.setState({
+					loggedIn: true,
+					user: response.data.user
+				})
+			} else {
+				this.setState({
+					loggedIn: false,
+					user: null
+				})
+			}
 		})
 	}
-	// _alertMe = () => {
-	// 	alert('I fired')
-	// }
-	_alertMe() {
-		alert('I fired')
+
+	_logout(event) {
+		event.preventDefault()
+		console.log('logging out')
+		axios.post('/auth/logout').then(response => {
+			console.log(response.data)
+			// console.log(response)
+			if (response.status === 200) {
+				this.setState({
+					loggedIn: false,
+					user: null
+				})
+			}
+		})
 	}
 
-	makeNewItem(name, found) {
+	_login(email, password) {
 		axios
-			.post('/api/new/lostitem', {
-				name: name,
-				found: found
+			.post('/auth/login', {
+				email,
+				password
 			})
 			.then(response => {
-				console.log(response.data)
-				let newLostItems = this.state.lostItems
-				newLostItems.push(response.data)
-				this.setState({
-					lostItems: newLostItems
-				})
+				console.log(response)
+				if (response.status === 200) {
+					// update the state
+					this.setState({
+						loggedIn: true,
+						user: response.data.user
+					})
+				}
 			})
 	}
+
 	render() {
+		const formBlock = this.state.loggedIn
+			? null
+			: <LoginForm _login={this._login} />
+		const logoutBlock = this.state.loggedIn
+			? <button onClick={this._logout}>LOGOUT</button>
+			: null
 		return (
 			<div className="App">
 				<h1>This is the APP component</h1>
-				{/* <p>
-					My lost items: {JSON.stringify(this.state.lostItems)}
-				</p> */}
-				<DisplayItems lostItems={this.state.lostItems} />
-				<AddItemForm _alertMe={this._alertMe} makeNewItem={this.makeNewItem} />
-				{/* <DisplayItems lostItems={this.state.lostItems} />
-				<AddItemForm /> */}
+				{/* <LoginForm _login={this._login} /> */}
+				{formBlock}
+				{/* <button onClick={this._logout}>LOGOUT</button> */}
+				{logoutBlock}
 			</div>
 		)
 	}

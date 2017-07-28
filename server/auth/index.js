@@ -31,22 +31,55 @@ const passport = require('../passport')
 // 	})
 // )
 
+// this route is just used to get the user basic info
+router.get('/user', (req, res, next) => {
+	console.log(req.user)
+	if (req.user) {
+		return res.json({ user: req.user })
+	} else {
+		return res.json({ user: null })
+	}
+
+	// passport.authenticate('local', function(err, user, info) {
+	// 	console.log('authenticate function')
+	// 	if (err) {
+	// 		return next(err)
+	// 	}
+	// 	if (!user) {
+	// 		return res.json({ user: null })
+	// 	}
+	// 	return res.json({ user: { email: user.email, _id: user._id } })
+	// })
+})
+
 router.post('/login', passport.authenticate('local'), (req, res) => {
 	console.log('POST login ========>')
 	// console.log(Object.keys(res))
 	// console.log(res.writeHead)
 	// console.log(Object.keys(res.req))
 	// console.log(res.req.headers.cookie)
-	res.redirect('/logout')
+	console.log('post LOGIN USER?????')
+	// console.log(req.user)
+	// const newUser = Object.assign({}, req.user)
+	// delete newUser.password
+	// console.log(newUser)
+	console.log(req.user)
+	// BUG - this req.user includes the password WTF
+	res.json({ user: { email: req.user.email, _id: req.user._id } })
 })
 
 router.post('/logout', (req, res) => {
+	if (req.user) {
+		req.session.destroy()
+		res.clearCookie('connect.sid') // clean up!
+		return res.json({ msg: 'logging you out' })
+	} else {
+		return res.json({ msg: 'no user to log out!' })
+	}
 	// req.logout()
-	req.session.destroy()
-	res.clearCookie('connect.sid') // clean up!
-	console.log('you are logged out')
+	// console.log('you are logged out')
 	// res.json({ msg: 'you are logged out' })
-	res.redirect('/home')
+	// res.redirect('/home')
 })
 
 router.post('/signup', (req, res) => {

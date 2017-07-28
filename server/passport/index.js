@@ -39,6 +39,8 @@ passport.use(
 				if (!userMatch.checkPassword(password)) {
 					return done(null, false, { message: 'Incorrect password' })
 				}
+				// const hack = JSON.parse(JSON.stringify(userMatch))
+				// return done(null, hack)
 				return done(null, userMatch)
 			})
 		}

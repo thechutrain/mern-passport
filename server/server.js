@@ -71,6 +71,12 @@ app.use('/auth', require('./auth'))
 // 	res.json({ data: ['a', 'b', 'c'] })
 // })
 
+app.use(function(err, req, res, next) {
+	console.log('====== ERROR =======')
+	console.error(err.stack)
+	res.status(500)
+})
+
 // ==== Starting Server =====
 app.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
