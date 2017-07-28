@@ -19,4 +19,6 @@ router.post('/signup', (req, res) => {
 	// return res.json({ msg: 'you hit the post signup route' })
 })
 
+router.post()
+
 module.exports = router
