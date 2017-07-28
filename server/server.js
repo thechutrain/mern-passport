@@ -1,9 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
+const dbConnection = require('./db') // loads our connection to the mongo database
 const app = express()
 const PORT = process.env.PORT || 8080
 
+// ===== Middleware ====
 app.use(morgan('dev'))
 app.use(
 	bodyParser.urlencoded({
@@ -11,9 +15,12 @@ app.use(
 	})
 )
 app.use(bodyParser.json())
-
-// === Database =====
-require('./db') // loads our connection to the mongo database
+app.use(
+	session({
+		secret: process.env.APP_SECRET || 'this is the default passphrase',
+		store: new MongoStore({ mongooseConnection: dbConnection })
+	})
+)
 
 /* Express app ROUTING */
 app.use('/auth', require('./auth'))
