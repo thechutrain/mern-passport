@@ -6,7 +6,7 @@ const Header = props => {
 		return (
 			<div className="Header">
 				<p>
-					Welcome back, {props.user.username}
+					Welcome back, {props.user.username || props.user.firstName}
 				</p>
 			</div>
 		)
