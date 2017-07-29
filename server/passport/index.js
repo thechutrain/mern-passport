@@ -8,15 +8,11 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((id, done) => {
-	User.findOne(
-		{ _id: id },
-		'username firstName lastName photos',
-		(err, user) => {
-			// console.log('======= DESERILAIZE USER CALLED ======')
-			// console.log(user)
-			done(null, user)
-		}
-	)
+	User.findOne({ _id: id }, 'firstName lastName photos', (err, user) => {
+		// console.log('======= DESERILAIZE USER CALLED ======')
+		// console.log(user)
+		done(null, user)
+	})
 })
 
 // ==== Register Strategies ====
