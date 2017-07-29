@@ -3,12 +3,15 @@
 */
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
-const MONGO_URL = 'mongodb://localhost/mern-passport'
+let MONGO_URL
+const MONGO_LOCAL_URL = 'mongodb://localhost/mern-passport'
 
 if (process.env.MONGODB_URI) {
 	mongoose.connect(process.env.MONGODB_URI)
+	MONGO_URL = process.env.MONGODB_URI
 } else {
-	mongoose.connect(MONGO_URL) // local mongo url
+	mongoose.connect(MONGO_LOCAL_URL) // local mongo url
+	MONGO_URL = MONGO_LOCAL_URL
 }
 
 // should mongoose.connection be put in the call back of mongoose.connect???
