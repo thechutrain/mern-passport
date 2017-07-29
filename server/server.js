@@ -30,32 +30,32 @@ app.use(
 		saveUninitialized: false
 	})
 )
-// ===== testing middleware =====
-// app.use(function(req, res, next) {
-// 	console.log('===== passport user =======')
-// 	console.log(req.session)
-// 	console.log(req.user)
-// 	console.log('===== END =======')
-// 	next()
-// })
 
 // ===== Passport ====
 app.use(passport.initialize())
 app.use(passport.session())
 
+// ===== testing middleware =====
+app.use(function(req, res, next) {
+	console.log('===== passport user =======')
+	console.log(req.session)
+	console.log(req.user)
+	console.log('===== END =======')
+	next()
+})
 // testing
-app.get(
-	'/auth/google/callback',
-	(req, res, next) => {
-		console.log(`req.user: ${req.user}`)
-		console.log('======= /auth/google/callback was called! =====')
-		next()
-	},
-	passport.authenticate('google', { failureRedirect: '/login' }),
-	(req, res) => {
-		res.redirect('/')
-	}
-)
+// app.get(
+// 	'/auth/google/callback',
+// 	(req, res, next) => {
+// 		console.log(`req.user: ${req.user}`)
+// 		console.log('======= /auth/google/callback was called! =====')
+// 		next()
+// 	},
+// 	passport.authenticate('google', { failureRedirect: '/login' }),
+// 	(req, res) => {
+// 		res.redirect('/')
+// 	}
+// )
 
 // ==== if its production environment!
 if (process.env.NODE_ENV === 'production') {
