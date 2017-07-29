@@ -1,6 +1,7 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const User = require('../db/models/user')
+const GoogleStratgey = require('./googleStrategy')
 
 passport.serializeUser((user, done) => {
 	done(null, { _id: user._id })
@@ -34,5 +35,7 @@ passport.use(
 		}
 	)
 )
+
+passport.use(GoogleStratgey)
 
 module.exports = passport
