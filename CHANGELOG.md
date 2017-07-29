@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - a route for creating a new user & works properly with the hashing
 
+
+## [0.0.8] - 2017-07-27
+### Changed
+- changed from signing up, signing in with email to using a username
 <!-- ## [Unreleased]
 
 ## [1.0.0] - 2017-06-20

@@ -13,9 +13,18 @@ router.get('/user', (req, res, next) => {
 	}
 })
 
-router.post('/login', passport.authenticate('local'), (req, res) => {
-	res.json({ user: { email: req.user.email, _id: req.user._id } })
-})
+router.post(
+	'/login',
+	function(req, res, next) {
+		console.log(req.body)
+		console.log('================')
+		next()
+	},
+	passport.authenticate('local'),
+	(req, res) => {
+		res.json({ user: { username: req.user.username, _id: req.user._id } })
+	}
+)
 
 router.post('/logout', (req, res) => {
 	if (req.user) {
@@ -28,9 +37,9 @@ router.post('/logout', (req, res) => {
 })
 
 router.post('/signup', (req, res) => {
-	const { email, password } = req.body
+	const { username, password } = req.body
 	// ADD VALIDATION
-	const newUser = new User({ email, password })
+	const newUser = new User({ username, password })
 	newUser.save((err, savedUser) => {
 		if (err) return res.json(err)
 		return res.json(savedUser)

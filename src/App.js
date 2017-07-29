@@ -94,10 +94,10 @@ class App extends Component {
 		})
 	}
 
-	_login(email, password) {
+	_login(username, password) {
 		axios
 			.post('/auth/login', {
-				email,
+				username,
 				password
 			})
 			.then(response => {

@@ -3,11 +3,11 @@ const LocalStrategy = require('passport-local').Strategy
 const User = require('../db/models/user')
 
 passport.serializeUser((user, done) => {
-	done(null, { _id: user._id, email: user.email }) // take out email in production
+	done(null, { _id: user._id })
 })
 
 passport.deserializeUser((id, done) => {
-	User.findOne({ _id: id }, 'email', (err, user) => {
+	User.findOne({ _id: id }, 'username', (err, user) => {
 		done(null, user)
 	})
 })
@@ -16,10 +16,10 @@ passport.deserializeUser((id, done) => {
 passport.use(
 	new LocalStrategy(
 		{
-			usernameField: 'email'
+			usernameField: 'username' // not necessary, DEFAULT
 		},
 		function(username, password, done) {
-			User.findOne({ email: username }, (err, userMatch) => {
+			User.findOne({ username: username }, (err, userMatch) => {
 				if (err) {
 					return done(err)
 				}

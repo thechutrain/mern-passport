@@ -5,7 +5,7 @@ class LoginForm extends Component {
 	constructor() {
 		super()
 		this.state = {
-			email: '',
+			username: '',
 			password: '',
 			redirectTo: null
 		}
@@ -22,10 +22,10 @@ class LoginForm extends Component {
 	handleSubmit(event) {
 		event.preventDefault()
 		console.log('handleSubmit')
-		this.props._login(this.state.email, this.state.password)
+		this.props._login(this.state.username, this.state.password)
 		// clean up the form
 		// this.setState({
-		// 	email: '',
+		// 	username: '',
 		// 	password: ''
 		// })
 		// redirect - will clean form
@@ -34,7 +34,7 @@ class LoginForm extends Component {
 		})
 		// axios
 		// 	.post('/auth/login', {
-		// 		email: this.state.email,
+		// 		username: this.state.username,
 		// 		password: this.state.password
 		// 	})
 		// 	.then(response => {
@@ -52,11 +52,11 @@ class LoginForm extends Component {
 			return (
 				<div className="LoginForm">
 					<h1>Login form</h1>
-					<label htmlFor="email">Email: </label>
+					<label htmlFor="username">Username: </label>
 					<input
 						type="text"
-						name="email"
-						value={this.state.email}
+						name="username"
+						value={this.state.username}
 						onChange={this.handleChange}
 					/>
 					<label htmlFor="password">Password: </label>
