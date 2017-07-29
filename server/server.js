@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== 'production') {
 	console.log('loading dev environments')
 	require('dotenv').config()
 }
+require('dotenv').config()
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -33,16 +34,16 @@ app.use(
 
 // ===== Passport ====
 app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.session()) // will call the deserializeUser
 
 // ===== testing middleware =====
-app.use(function(req, res, next) {
-	console.log('===== passport user =======')
-	console.log(req.session)
-	console.log(req.user)
-	console.log('===== END =======')
-	next()
-})
+// app.use(function(req, res, next) {
+// 	console.log('===== passport user =======')
+// 	console.log(req.session)
+// 	console.log(req.user)
+// 	console.log('===== END =======')
+// 	next()
+// })
 // testing
 // app.get(
 // 	'/auth/google/callback',

@@ -26,13 +26,12 @@ const strategy = new GoogleStrategy(
 				return done(null, userMatch)
 			} else {
 				// if no user in our db, create a new user with that googleId
-				// console.log('====== PRE SAVE =======')
-				// console.log(id)
-				// console.log(typeof profile)
-				// console.log('====== post save ....')
+				console.log('====== PRE SAVE =======')
+				console.log(id)
+				console.log(profile)
+				console.log('====== post save ....')
 				const newGoogleUser = new User({
-					googleId: id,
-					password: 'REPLACE ME LATER', // temporary because I'm not providing one & hook will do this!
+					'google.googleId': id,
 					firstName: name.givenName,
 					lastName: name.familyName,
 					photos: photos

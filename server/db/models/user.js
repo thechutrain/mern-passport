@@ -5,12 +5,26 @@ mongoose.promise = Promise
 
 // Define userSchema
 const userSchema = new Schema({
-	username: { type: String },
-	password: { type: String },
-	googleId: { type: String, required: false },
-	firstName: { type: String },
-	lastName: { type: String },
+	firstName: { type: String, unique: false },
+	lastName: { type: String, unique: false },
+	local: {
+		username: { type: String, unique: false, required: false },
+		password: { type: String, unique: false, required: false }
+	},
+	google: {
+		googleId: { type: String, required: false }
+	},
 	photos: []
+	// local: {
+	// 	email: { type: String, unique: true },
+	// 	password: { type: String }
+	// },
+	// google: {
+	// 	id: { type: String },
+	// 	photos: []
+	// },
+	// firstName: { type: String },
+	// lastName: { type: String }
 })
 
 // Define schema methods
@@ -25,8 +39,15 @@ userSchema.methods = {
 
 // Define hooks for pre-saving
 userSchema.pre('save', function(next) {
-	this.password = this.hashPassword(this.password)
-	next()
+	if (!this.password) {
+		console.log('=======NO PASSWORD PROVIDED=======')
+		next()
+	} else {
+		this.password = this.hashPassword(this.password)
+		next()
+	}
+	// this.password = this.hashPassword(this.password)
+	// next()
 })
 
 // Create reference to User & export

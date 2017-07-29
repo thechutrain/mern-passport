@@ -59,6 +59,7 @@ class App extends Component {
 		}
 		this._logout = this._logout.bind(this)
 		this._login = this._login.bind(this)
+		this._googleSignin = this._googleSignin.bind(this)
 	}
 
 	componentDidMount() {
@@ -112,6 +113,13 @@ class App extends Component {
 			})
 	}
 
+	_googleSignin() {
+		console.log('making request to google to sign in')
+		axios.get('/auth/google').then(response => {
+			console.log(response)
+		})
+	}
+
 	render() {
 		return (
 			<div className="App">
@@ -125,7 +133,11 @@ class App extends Component {
 				<Route
 					exact
 					path="/login"
-					render={() => <LoginForm _login={this._login} />}
+					render={() =>
+						<LoginForm
+							_login={this._login}
+							_googleSignin={this._googleSignin}
+						/>}
 				/>
 				<Route exact path="/signup" component={SignupForm} />
 				{/* <LoginForm _login={this._login} /> */}

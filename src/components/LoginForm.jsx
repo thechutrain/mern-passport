@@ -9,6 +9,7 @@ class LoginForm extends Component {
 			password: '',
 			redirectTo: null
 		}
+		// this.googleSignin = this.googleSignin.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
 	}
@@ -23,26 +24,9 @@ class LoginForm extends Component {
 		event.preventDefault()
 		console.log('handleSubmit')
 		this.props._login(this.state.username, this.state.password)
-		// clean up the form
-		// this.setState({
-		// 	username: '',
-		// 	password: ''
-		// })
-		// redirect - will clean form
 		this.setState({
 			redirectTo: '/'
 		})
-		// axios
-		// 	.post('/auth/login', {
-		// 		username: this.state.username,
-		// 		password: this.state.password
-		// 	})
-		// 	.then(response => {
-		// 		if (response.status === 200) {
-		// 			// update the state
-		// 		}
-		// 		console.log(response)
-		// 	})
 	}
 
 	render() {
@@ -67,6 +51,10 @@ class LoginForm extends Component {
 						onChange={this.handleChange}
 					/>
 					<button onClick={this.handleSubmit}>Login</button>
+					<button onClick={this.props._googleSignin}>
+						Sign in with Google
+					</button>
+					<a href="/auth/google">regular A-tag to google</a>
 				</div>
 			)
 		}
