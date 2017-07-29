@@ -1,4 +1,4 @@
-const GoogleStrategy = require('passport-google-oauth20').Strategy
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
 const User = require('../db/models/user')
 
 const strategy = new GoogleStrategy(
@@ -7,13 +7,13 @@ const strategy = new GoogleStrategy(
 		clientSecret: process.env.GOOGLE_CLIENT_SECRET,
 		callbackURL: '/auth/google/callback'
 	},
-	function(token, refreshToken, profile, done) {
+	function(token, tokenSecret, profile, done) {
 		// testing
 		console.log('===== GOOGLE PROFILE =======')
 		console.log(profile)
 		console.log('======== END ===========')
 		// code
-		const { id, name, email } = profile
+		const { id, name, photos } = profile
 		User.findOne({ googleId: id }, (err, userMatch) => {
 			// handle errors here:
 			if (err) {
@@ -26,9 +26,15 @@ const strategy = new GoogleStrategy(
 				return done(null, userMatch)
 			} else {
 				// if no user in our db, create a new user with that googleId
+				console.log('====== PRE SAVE =======')
+				console.log(id)
+				console.log(profile)
+				console.log('====== post save ....')
 				const newGoogleUser = new User({
-					username: email,
-					googleId: id
+					'google.googleId': id,
+					firstName: name.givenName,
+					lastName: name.familyName,
+					photos: photos
 				})
 				// save this user
 				newGoogleUser.save((err, savedUser) => {
@@ -41,8 +47,8 @@ const strategy = new GoogleStrategy(
 					}
 				}) // closes newGoogleUser.save
 			}
-		}) // closes User.findOne
-	} // closes callback function of new GoogleStratgey
+		}) // closes User.findONe
+	}
 )
 
 module.exports = strategy
