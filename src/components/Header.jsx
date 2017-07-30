@@ -3,10 +3,12 @@ import React from 'react'
 
 const Header = props => {
 	if (props.user) {
+		// const name = props.user.local.username || props.
 		return (
 			<div className="Header">
 				<p>
-					Welcome back, {props.user.username || props.user.firstName}
+					Welcome back, ---
+					{/* {props.user.local.username || props.user.firstName} */}
 				</p>
 			</div>
 		)

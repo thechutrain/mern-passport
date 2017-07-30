@@ -14,7 +14,7 @@ const strategy = new GoogleStrategy(
 		console.log('======== END ===========')
 		// code
 		const { id, name, photos } = profile
-		User.findOne({ googleId: id }, (err, userMatch) => {
+		User.findOne({ 'google.googleId': id }, (err, userMatch) => {
 			// handle errors here:
 			if (err) {
 				console.log('Error!! trying to find user with googleId')
