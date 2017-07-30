@@ -14,6 +14,7 @@ router.get(
 
 // this route is just used to get the user basic info
 router.get('/user', (req, res, next) => {
+	console.log('===== user!!======')
 	console.log(req.user)
 	if (req.user) {
 		return res.json({ user: req.user })
@@ -31,7 +32,14 @@ router.post(
 	},
 	passport.authenticate('local'),
 	(req, res) => {
-		res.json({ user: { username: req.user.username, _id: req.user._id } })
+		console.log('POST to /login')
+		const user = JSON.parse(JSON.stringify(req.user)) // hack
+		const cleanUser = Object.assign({}, user)
+		if (cleanUser.local) {
+			console.log(`Deleting ${cleanUser.local.password}`)
+			delete cleanUser.local.password
+		}
+		res.json({ user: cleanUser })
 	}
 )
 
@@ -48,10 +56,20 @@ router.post('/logout', (req, res) => {
 router.post('/signup', (req, res) => {
 	const { username, password } = req.body
 	// ADD VALIDATION
-	const newUser = new User({ username, password })
-	newUser.save((err, savedUser) => {
-		if (err) return res.json(err)
-		return res.json(savedUser)
+	User.findOne({ 'local.username': username }, (err, userMatch) => {
+		if (userMatch) {
+			return res.json({
+				error: `Sorry, already a user with the username: ${username}`
+			})
+		}
+		const newUser = new User({
+			'local.username': username,
+			'local.password': password
+		})
+		newUser.save((err, savedUser) => {
+			if (err) return res.json(err)
+			return res.json(savedUser)
+		})
 	})
 })
 

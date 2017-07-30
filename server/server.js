@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== 'production') {
 	console.log('loading dev environments')
 	require('dotenv').config()
 }
+require('dotenv').config()
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -30,6 +31,11 @@ app.use(
 		saveUninitialized: false
 	})
 )
+
+// ===== Passport ====
+app.use(passport.initialize())
+app.use(passport.session()) // will call the deserializeUser
+
 // ===== testing middleware =====
 // app.use(function(req, res, next) {
 // 	console.log('===== passport user =======')
@@ -38,24 +44,19 @@ app.use(
 // 	console.log('===== END =======')
 // 	next()
 // })
-
-// ===== Passport ====
-app.use(passport.initialize())
-app.use(passport.session())
-
 // testing
-app.get(
-	'/auth/google/callback',
-	(req, res, next) => {
-		console.log(`req.user: ${req.user}`)
-		console.log('======= /auth/google/callback was called! =====')
-		next()
-	},
-	passport.authenticate('google', { failureRedirect: '/login' }),
-	(req, res) => {
-		res.redirect('/')
-	}
-)
+// app.get(
+// 	'/auth/google/callback',
+// 	(req, res, next) => {
+// 		console.log(`req.user: ${req.user}`)
+// 		console.log('======= /auth/google/callback was called! =====')
+// 		next()
+// 	},
+// 	passport.authenticate('google', { failureRedirect: '/login' }),
+// 	(req, res) => {
+// 		res.redirect('/')
+// 	}
+// )
 
 // ==== if its production environment!
 if (process.env.NODE_ENV === 'production') {

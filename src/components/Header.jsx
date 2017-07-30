@@ -2,21 +2,27 @@ import React from 'react'
 // TODO - add proptypes
 
 const Header = props => {
-	if (props.user) {
-		return (
-			<div className="Header">
-				<p>
-					Welcome back, {props.user.username}
-				</p>
-			</div>
+	let Greeting
+	if (props.user === null) {
+		Greeting = <p>Hello guest</p>
+	} else if (props.user.firstName) {
+		Greeting = (
+			<p>
+				Welcome back, <strong>{props.user.firstName}</strong>
+			</p>
 		)
-	} else {
-		return (
-			<div className="Header">
-				<p>Hello guest</p>
-			</div>
+	} else if (props.user.local.username) {
+		Greeting = (
+			<p>
+				Welcome back, <strong>{props.user.local.username} </strong>
+			</p>
 		)
 	}
+	return (
+		<div className="Header">
+			{Greeting}
+		</div>
+	)
 }
 
 export default Header

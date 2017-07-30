@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Route, Link } from 'react-router-dom'
 import './App.css'
-import LoginForm from './components/LoginForm'
+import LoginForm from './components/Login/LoginForm'
 import SignupForm from './components/SignupForm'
 import Header from './components/Header'
 import Home from './components/Home'
@@ -60,7 +60,6 @@ class App extends Component {
 		this._logout = this._logout.bind(this)
 		this._login = this._login.bind(this)
 	}
-
 	componentDidMount() {
 		axios.get('/auth/user').then(response => {
 			console.log(response.data)
@@ -84,7 +83,6 @@ class App extends Component {
 		console.log('logging out')
 		axios.post('/auth/logout').then(response => {
 			console.log(response.data)
-			// console.log(response)
 			if (response.status === 200) {
 				this.setState({
 					loggedIn: false,
@@ -125,7 +123,11 @@ class App extends Component {
 				<Route
 					exact
 					path="/login"
-					render={() => <LoginForm _login={this._login} />}
+					render={() =>
+						<LoginForm
+							_login={this._login}
+							_googleSignin={this._googleSignin}
+						/>}
 				/>
 				<Route exact path="/signup" component={SignupForm} />
 				{/* <LoginForm _login={this._login} /> */}
