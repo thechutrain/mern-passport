@@ -100,7 +100,6 @@ class App extends Component {
 			})
 			.then(response => {
 				console.log(response)
-				debugger
 				if (response.status === 200) {
 					// update the state
 					this.setState({
