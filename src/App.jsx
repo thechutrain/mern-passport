@@ -60,13 +60,7 @@ class App extends Component {
 		this._logout = this._logout.bind(this)
 		this._login = this._login.bind(this)
 	}
-	componentWillMount() {
-		console.log('About to make request to get users ....')
-		// debugger
-	}
 	componentDidMount() {
-		console.log('About to make request to get users ....')
-		// debugger
 		axios.get('/auth/user').then(response => {
 			console.log(response.data)
 			if (!!response.data.user) {
@@ -89,7 +83,6 @@ class App extends Component {
 		console.log('logging out')
 		axios.post('/auth/logout').then(response => {
 			console.log(response.data)
-			// console.log(response)
 			if (response.status === 200) {
 				this.setState({
 					loggedIn: false,
