@@ -62,11 +62,11 @@ class App extends Component {
 	}
 	componentWillMount() {
 		console.log('About to make request to get users ....')
-		debugger
+		// debugger
 	}
 	componentDidMount() {
 		console.log('About to make request to get users ....')
-		debugger
+		// debugger
 		axios.get('/auth/user').then(response => {
 			console.log(response.data)
 			if (!!response.data.user) {
