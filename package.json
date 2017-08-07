@@ -34,6 +34,9 @@
 		"prod": "export NODE_ENV=\"production\" && nodemon server/server.js"
 	},
 	"proxy": {
+		"/api/data": {
+			"target": "http://localhost:8080/"
+		},
 		"/auth": {
 			"target": "http://localhost:8080"
 		}
