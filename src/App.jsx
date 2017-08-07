@@ -39,7 +39,7 @@ class App extends Component {
 					}
 				})
 			}.bind(this),
-			2000
+			1000
 		)
 	}
 

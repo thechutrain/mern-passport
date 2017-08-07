@@ -25,9 +25,7 @@ const Header = props => {
 	return (
 		<div className="Header">
 			<NavLinks _logout={props._logout} loggedIn={props.loggedIn} />
-			<p>
-				Greeting: {Greeting}
-			</p>
+			{Greeting}
 		</div>
 	)
 }

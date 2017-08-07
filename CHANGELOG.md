@@ -21,3 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.0.12] - 2017-08-07
 ### Changed
 - proxies google OAuth callbacks correctly on the local server now
+- restructured `src/` folder around pages that react-router would route to
+### Added
+- isLoadingHOC to wrap main router page components to not display anything during the latency of waiting for user status to come back in the state.
+- spinner displays from isLoadingHOC for waiting to redirect the user
