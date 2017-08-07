@@ -71,6 +71,11 @@ if (process.env.NODE_ENV === 'production') {
 /* Express app ROUTING */
 app.use('/auth', require('./auth'))
 
+// for testing!
+app.get('/api/secretdata', passport.authenticate(), (req, res) => {
+	res.json({ secretMessage: 'I like turtles' })
+})
+
 // ====== Error handler ====
 app.use(function(err, req, res, next) {
 	console.log('====== ERROR =======')
