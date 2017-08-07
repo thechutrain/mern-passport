@@ -32,31 +32,31 @@ app.use(
 	})
 )
 
+// Seems like deserialize doesn't clear req.user prior
+app.use(function(req, res, next) {
+	// req.user = { _id: 123123123, name: 'bad hack' }
+	req.user = null // patch
+	next()
+})
+
+// ===== DEBUGGING ======
+// app.use((req, res, next) => {
+// 	console.log(' ------- req.user BEFORE PASSPORT--------')
+// 	console.log(req.user)
+// 	console.log('=========================')
+// 	next()
+// })
 // ===== Passport ====
 app.use(passport.initialize())
 app.use(passport.session()) // will call the deserializeUser
 
-// ===== testing middleware =====
-// app.use(function(req, res, next) {
-// 	console.log('===== passport user =======')
-// 	console.log(req.session)
+// ===== DEBUGGING ======
+// app.use((req, res, next) => {
+// 	console.log(' ------- req.user --------')
 // 	console.log(req.user)
-// 	console.log('===== END =======')
+// 	console.log('=========================')
 // 	next()
 // })
-// testing
-// app.get(
-// 	'/auth/google/callback',
-// 	(req, res, next) => {
-// 		console.log(`req.user: ${req.user}`)
-// 		console.log('======= /auth/google/callback was called! =====')
-// 		next()
-// 	},
-// 	passport.authenticate('google', { failureRedirect: '/login' }),
-// 	(req, res) => {
-// 		res.redirect('/')
-// 	}
-// )
 
 // ==== if its production environment!
 if (process.env.NODE_ENV === 'production') {
@@ -72,7 +72,12 @@ if (process.env.NODE_ENV === 'production') {
 app.use('/auth', require('./auth'))
 
 // for testing!
-app.get('/api/secretdata', passport.authenticate(), (req, res) => {
+app.get('/api/data', (req, res) => {
+	if (!req.isAuthenticated()) {
+		return res.json({ Error: 'You must be authenticated!' })
+	}
+	console.log('/api/data ........ req.user!!!')
+	console.log(req.user)
 	res.json({ secretMessage: 'I like turtles' })
 })
 
