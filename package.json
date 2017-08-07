@@ -33,5 +33,9 @@
 		"dev": "concurrently \"react-scripts start\" \"nodemon server/server.js\"",
 		"prod": "export NODE_ENV=\"production\" && nodemon server/server.js"
 	},
-	"proxy": "http://localhost:8080"
+	"proxy": {
+		"/auth": {
+			"target": "http://localhost:8080"
+		}
+	}
 }
