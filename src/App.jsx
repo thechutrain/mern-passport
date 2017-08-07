@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Route, Link } from 'react-router-dom'
 import './App.css'
-import LoginForm from './components/Login/LoginForm'
-import SignupForm from './components/SignupForm'
 import Header from './components/Header'
-import Home from './components/Home'
+import LoginForm from './container/LoginPage/Login/LoginForm'
+import SignupForm from './container/LoginPage/SignupForm'
+import Home from './container/HomePage/Home'
 
 const DisplayLinks = props => {
 	if (props.loggedIn) {
@@ -18,7 +18,7 @@ const DisplayLinks = props => {
 						</Link>
 					</li>
 					<li>
-						<Link to="#" className="nav-link" onClick={props._logout}>
+						<Link to="/" className="nav-link" onClick={props._logout}>
 							Logout
 						</Link>
 					</li>
@@ -113,12 +113,10 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<h1>This is the main App component</h1>
-				<Header user={this.state.user} />
+				{/* <Header user={this.state.user} /> */}
 				{/* LINKS to our different 'pages' */}
 				<DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
 				{/*  ROUTES */}
-				{/* <Route exact path="/" component={Home} /> */}
 				<Route exact path="/" render={() => <Home user={this.state.user} />} />
 				<Route
 					exact
