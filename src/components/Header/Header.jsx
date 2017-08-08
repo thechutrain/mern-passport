@@ -1,6 +1,7 @@
 import React from 'react'
 import NavLinks from './NavLinks'
 import withLoading from '../isLoadingHOC'
+import './Header.css'
 // TODO - add proptypes
 
 const Header = props => {
