@@ -3,6 +3,7 @@ import './App.css'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import SecretData from './SecretData'
+import SubscribeForm from './components/reduxForm'
 
 class App extends Component {
   // constructor() {
@@ -14,6 +15,7 @@ class App extends Component {
         <h1>Hello world</h1>
         <br />
         <SecretData></SecretData>
+        <SubscribeForm></SubscribeForm>
       </div>
     )
   }
