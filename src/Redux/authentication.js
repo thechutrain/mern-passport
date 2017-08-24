@@ -27,6 +27,7 @@ export default function reducer(state = defaultState, action) {
     case SIGN_OUT:
       return { ...state, loggedIn: false }
     case LOCAL_SIGN_IN:
+      // change the format of how user is defined here
       return { ...state, user: action.payload.user }
     case FLASH_MSG:
       return { ...state, flashMsg: { ...state.flashMsg, ...action.payload.flashMsg } }
