@@ -12,7 +12,7 @@ export const SIGN_OUT = 'SIGN_OUT'
 *
 */
 const defaultState = {
-  loggedIn: true,
+  loggedIn: false,
   user: {
   },
   // for updating to the user that they've signed in or not
@@ -29,7 +29,7 @@ export default function reducer(state = defaultState, action) {
       return { ...state, loggedIn: false }
     case LOCAL_SIGN_IN:
       // change the format of how user is defined here
-      return { ...state, user: action.payload.user }
+      return { ...state, user: action.payload.user, loggedIn: true }
     case FLASH_MSG:
       return { ...state, flashMsg: { ...state.flashMsg, ...action.payload.flashMsg } }
     default:

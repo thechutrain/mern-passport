@@ -9,18 +9,12 @@ function userOnly(WrappedComponent) {
   // connect to the redux store - loggedIn 
   const mapStateToProps = (store) => {
     return {
-      loggedIn: store.authenticate.loggedIn
+      loggedIn: store.authenticate.loggedIn,
+      user: store.authenticate.user
     }
   }
 
   class userOnlyWrapper extends Component {
-    // constructor(props) {
-    //   super(props)
-    //   this.state = {
-    //     loggedIn: props.loggedIn,
-    //     test: 'this is a test'
-    //   }
-    // }
     render() {
       return this.props.loggedIn ? <WrappedComponent {...this.props} /> : null
     }
@@ -30,4 +24,3 @@ function userOnly(WrappedComponent) {
 }
 
 export default userOnly
-// export default connect(mapStateToProps)(userOnly)
