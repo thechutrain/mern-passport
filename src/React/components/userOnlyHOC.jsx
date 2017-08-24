@@ -5,7 +5,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-function userOnly(WrappedComponent) {
+function userOnly(WrappedComponent, displayError = false) {
   // connect to the redux store - loggedIn 
   const mapStateToProps = (store) => {
     return {
@@ -16,7 +16,8 @@ function userOnly(WrappedComponent) {
 
   class userOnlyWrapper extends Component {
     render() {
-      return this.props.loggedIn ? <WrappedComponent {...this.props} /> : null
+      const noUserDisplay = displayError ? <p>You must be logged in to view this component </p> : null
+      return this.props.loggedIn ? <WrappedComponent {...this.props} /> : noUserDisplay
     }
   }
   // return HOC

@@ -10,4 +10,4 @@ const SecretData = (props) => {
 }
 
 // export default SecretData
-export default userOnly(SecretData)
+export default userOnly(SecretData, true)
