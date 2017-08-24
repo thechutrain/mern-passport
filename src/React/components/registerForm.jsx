@@ -4,43 +4,30 @@ import { Field, reduxForm } from 'redux-form'
 let RegisterForm = props => {
   const { handleSubmit } = props
   return (
-    <form onSubmit={ handleSubmit }>
-      <Field name="username" component="input"/>
-      <button type="submit">Submit</button>
+    <form onSubmit={handleSubmit}>
+      <button type="submit">Register</button>
     </form>
   )
 }
 
-const validate = values => {
-  const errors = {}
-  return errors
-}
-
-// syncValidated form
 RegisterForm = reduxForm({
-  form: 'register',
-  // validate
+  form: 'register'
 })(RegisterForm)
 
-class RegisterFormComponent extends Component {
-  constructor() {
+// Component that wraps the Register form
+export default class RegisterComponent extends Component {
+  constructor(){
     super()
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  handleSubmit(formData) {
-    debugger
+  handleSubmit(formData){
     console.log(formData)
+    debugger
   }
   render() {
+    // <RegisterForm handleSubmit={this.handleSubmit} />
     return (
-      <RegisterForm handleSubmit={this.handleSubmit}></RegisterForm>
-      // <form onSubmit={ this.handleSubmit }>
-      //   <Field name="username" component="input" />
-      //   <button type="submit">Submit</button>
-      // </form>
+      <RegisterForm onSubmit={this.handleSubmit}/>
     )
   }
 }
-
-
-export default RegisterFormComponent
