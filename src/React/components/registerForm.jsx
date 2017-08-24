@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 
 let RegisterForm = props => {
-  const { handleSubmit } = props
+  const { handleSubmit, myHandleSubmit } = props
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(myHandleSubmit)}>
       <button type="submit">Register</button>
     </form>
   )
@@ -18,16 +18,16 @@ RegisterForm = reduxForm({
 export default class RegisterComponent extends Component {
   constructor(){
     super()
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.myHandleSubmit = this.myHandleSubmit.bind(this)
   }
-  handleSubmit(formData){
+  myHandleSubmit(formData){
     console.log(formData)
     debugger
   }
   render() {
     // <RegisterForm handleSubmit={this.handleSubmit} />
     return (
-      <RegisterForm onSubmit={this.handleSubmit}/>
+      <RegisterForm myHandleSubmit={this.myHandleSubmit}/>
     )
   }
 }
