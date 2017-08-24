@@ -25,3 +25,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - isLoadingHOC to wrap main router page components to not display anything during the latency of waiting for user status to come back in the state.
 - spinner displays from isLoadingHOC for waiting to redirect the user
+
+# REDUX BRANCH
+## [redux_01] - 2017-08-24
+### Changed
+- removed previous `React/` folder and placed in `_React/`
+
+### Added
+- redux, authentication.js file that has basic actions, action creators, and reducer for managaing authentication state
+- created a `userOnlyHOC` component that wraps any component and will only display if a user is logged in 
