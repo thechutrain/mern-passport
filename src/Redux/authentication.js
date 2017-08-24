@@ -22,6 +22,7 @@ const defaultState = {
     msg: '',
   }
 }
+
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
     case SIGN_OUT:
