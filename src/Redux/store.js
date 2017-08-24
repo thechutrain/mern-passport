@@ -25,4 +25,6 @@ if (process.env.NODE_ENV === 'production') {
 export default store
 
 // ========== testing =========
-store.dispatch(auth.signOut())
+// store.dispatch(auth.signOut()) 
+store.dispatch(auth.localSignIn('b', 'b'))  // the correct password
+store.dispatch(auth.localSignIn('b', 'wrong password'))  // the wrong password
