@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
-
+import './registerForm.css'
 
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => {
   return (
     <div>
-      <label htmlFor={label}>{label}</label>
-      <input type={type} {...input} />
-      {
-        touched && ((error && <span className="errMsgSpan">{error}</span>))
-      }
+      <label htmlFor={label}>{label}:</label>
+      <div className="input-wrapper">
+        <input type={type} {...input} />
+        {
+          touched && ((error && <span className="errMsgSpan">*{error}</span>))
+        }
+      </div>
     </div>
   )
 }
@@ -17,7 +19,7 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 let RegisterForm = props => {
   const { handleSubmit, myHandleSubmit } = props
   return (
-    <form onSubmit={handleSubmit(myHandleSubmit)}>
+    <form className="register-form" onSubmit={handleSubmit(myHandleSubmit)}>
       <Field name="username" label="username" type="text" component={renderField} />
       <Field name="password" label="password" type="password" component={renderField} />
       <Field name="confirmPassword" label="confirm password" type="password" component={renderField} />
@@ -43,10 +45,10 @@ const validator = values => {
   }
   // confirm password
   if (!values.confirmPassword) {
-    errors.confirmPassword = 'Password Required'
+    errors.confirmPassword = 'Confirm Password Required'
   } else if (values.password !== values.confirmPassword) {
     errors.confirmPassword = 'Passwords must match'
-    errors.password = 'Passwords must match'
+    // errors.password = 'Passwords must match'
   }
   return errors
 }

@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+}
+
+form.register-form {
+  border: 2px solid gray;
+  padding: 1em 0em;
+  box-shadow: 2px 2px black;
+  border-radius: 5px;
+  width: 100%;
+}
+@media screen and (min-width: 900px){
+  form.register-form {
+    width: 60%;
+    margin: 0 auto;
+  }
+}
+
+form > div {
+  /* border: 2px solid yellow; */
+  padding: 1em 2em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+form > div > label {
+  /* padding: 1em; */
+  flex: 1 0 30%;
+  font-weight: 500;
+  text-align: right;
+  padding-right: 0.5em;
+  border: 2px solid transparent;
+}
+
+form > div > .input-wrapper {
+  /* padding: 1em; */
+  /* border-radius: 3px; */
+  flex: 1 0 70%;
+}
+
+form > div > .input-wrapper > input {
+  width: 100%;
+  padding: 0;
+}
+form > div > .input-wrapper > span {
+  display: block;
+  text-align: left;
+  padding-left: 0.5em;
+  color: red;
+  font-weight: 600;
+}
+
+form > button[type='submit']{
+  color: white;
+  background-color: #1a72e6;
+  border: 1px solid blue;
+  border-radius: 5px;
+  padding: 0.5em 2em;
+}
+form > button[type='submit']:hover{
+  cursor: pointer;
+  background-color: bisque;
+  color: blue;
+}
+
