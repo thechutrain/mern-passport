@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, reset } from 'redux-form'
 import './registerForm.css'
+import store from '../../Redux/store'
 
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => {
   return (
@@ -17,9 +18,17 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 }
 
 let RegisterForm = props => {
-  const { handleSubmit, myHandleSubmit } = props
+  const { handleSubmit, myHandleSubmit, reset } = props
+  const submissionHandler = function(formData) {
+    console.log(formData)
+    debugger
+    reset()
+  }
+  // <form className="register-form" onSubmit={handleSubmit(function(formData) {
+  //   myHandleSubmit(formData, reset)})
+  // }>
   return (
-    <form className="register-form" onSubmit={handleSubmit(myHandleSubmit)}>
+    <form className="register-form" onSubmit={handleSubmit(submissionHandler)}>
       <Field name="username" label="username" type="text" component={renderField} />
       <Field name="password" label="password" type="password" component={renderField} />
       <Field name="confirmPassword" label="confirm password" type="password" component={renderField} />
@@ -66,8 +75,22 @@ export default class RegisterComponent extends Component {
     super()
     this.myHandleSubmit = this.myHandleSubmit.bind(this)
   }
-  myHandleSubmit(formData) {
+  // this function gets called by redux-form, props will be inject 
+  // into it. Helper methods for clearing the form
+  myHandleSubmit(formData, reset) {
     console.log(formData)
+    console.log(reset)
+    
+    // const { createRecord, reset } = this.props
+    // redux action creator to submit form
+    // redux action creator to clear form
+    debugger
+    reset()
+    // return createRecord(formData).then(() => {
+    //   console.log('record created yo')
+    //   reset()
+    // })
+    // store.dispatch(reset('register'))
   }
   render() {
     // <RegisterForm handleSubmit={this.handleSubmit} />
