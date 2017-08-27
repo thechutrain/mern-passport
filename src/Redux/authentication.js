@@ -44,6 +44,7 @@ export const signOut = () => ({ type: SIGN_OUT })
 export const localSignIn = (username, password) => (dispatch, getState) => {
   axios.post('/auth/login', { username, password }).then((response) => {
     // dispatch successful login
+    console.log('SUCEESSFUL login')
     dispatch({ type: FLASH_MSG, payload: { flashMsg: { error: false, displayMsg: true, msg: 'You have successfully signed in :)' } } })
     dispatch({ type: LOCAL_SIGN_IN, payload: { user: response.data.user } })
   }).catch((error) => {
