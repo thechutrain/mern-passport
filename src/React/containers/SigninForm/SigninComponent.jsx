@@ -8,11 +8,13 @@ class SigninComponent extends Component {
     this.state = {
       fireRedirect: false
     }
+    this.signinHandler = this.signinHandler.bind(this)
   }
-  // signinHandler (formData) {
-  //   console.log(formData)
-  //   debugger
-  // }
+  signinHandler (formData) {
+    console.log(formData)
+    debugger
+    this.setState({ fireRedirect: true })
+  }
   render (){
     return (
       <div className="SigninComponent">
@@ -20,7 +22,7 @@ class SigninComponent extends Component {
           <Redirect to='/'/>
         )}
         <h2>Sign in here</h2>
-        <SigninForm></SigninForm>
+        <SigninForm signinHandler={this.signinHandler} />
       </div>
     )
   }

@@ -25,14 +25,21 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 *
 */
 const SigninForm = props => {
-  const { handleSubmit, reset } = props
-  const signInHandler = function (formData) {
-    console.log(formData)
-    debugger
-  }
+  const { handleSubmit, signinHandler, reset } = props
+  // const signInHandler = function (formData) {
+  //   console.log(formData)
+  //   debugger
+  // }
+  // V1!
+  // const handleSubmitWrapper = function(formData) {
+  //   signinHandler(formData)
+  //   debugger
+  //   reset()
+  // }
+  // <form onSubmit={handleSubmit(handleSubmitWrapper)}>
   return (
     <div className="SigninForm">
-      <form onSubmit={handleSubmit(signInHandler)}>
+      <form onSubmit={handleSubmit(signinHandler)}>
         <Field name="username" label="username" type="text" component={renderField} />
         <Field name="password" label="password" type="password" component={renderField} />
         <button type="submit">
