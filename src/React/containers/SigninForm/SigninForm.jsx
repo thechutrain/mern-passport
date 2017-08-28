@@ -1,6 +1,5 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-
 import { localSignIn } from '../../../Redux/authentication'
 import store from '../../../Redux/store'
 
@@ -32,9 +31,15 @@ const SigninForm = props => {
     debugger
   }
   return (
-    <form onSubmit={handleSubmit(signInHandler)}>
-      <Field name="username" label="username" type="text" component={renderField} />
-    </form>
+    <div className="SigninForm">
+      <form onSubmit={handleSubmit(signInHandler)}>
+        <Field name="username" label="username" type="text" component={renderField} />
+        <Field name="password" label="password" type="password" component={renderField} />
+        <button type="submit">
+          submit
+        </button>
+      </form>
+    </div>
   )
 }
 
