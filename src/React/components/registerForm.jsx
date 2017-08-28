@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import './registerForm.css'
-import { localSignIn } from '../../Redux/authentication'
+import { localSignUp } from '../../Redux/authentication'
 import store from '../../Redux/store'
 
 /* renderField is a functional component, that renders an input in a 
@@ -30,7 +30,7 @@ const RegisterForm = props => {
   const submissionHandler = function(formData) {
     console.log(formData)
     debugger
-    store.dispatch(localSignIn(formData.username, formData.password))
+    store.dispatch(localSignUp(formData.username, formData.password))
     reset()
   }
   return (

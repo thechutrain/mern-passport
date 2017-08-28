@@ -3,6 +3,7 @@ import axios from 'axios'
 *
 */
 export const LOCAL_SIGN_IN = 'LOCAL_SIGN_IN'
+export const LOCAL_SIGN_UP = 'LOCAL_SIGN_UP'
 export const FLASH_MSG = 'FLASH_MSG'
 // export const FLASH_MSG_ERROR = 'FLASH_MSG_ERROR'
 // export const FLASH_MSG_SUCCESS = 'FLASH_MSG_SUCCESS'
@@ -28,8 +29,10 @@ export default function reducer(state = defaultState, action) {
     case SIGN_OUT:
       return { ...state, loggedIn: false }
     case LOCAL_SIGN_IN:
-      // change the format of how user is defined here
+      // TODO - change the format of how user is defined here
       return { ...state, user: action.payload.user, loggedIn: true }
+    // case LOCAL_REGISTER:
+    //   return 
     case FLASH_MSG:
       return { ...state, flashMsg: { ...state.flashMsg, ...action.payload.flashMsg } }
     default:
@@ -41,6 +44,7 @@ export default function reducer(state = defaultState, action) {
 *
 */
 export const signOut = () => ({ type: SIGN_OUT })
+
 export const localSignIn = (username, password) => (dispatch, getState) => {
   axios.post('/auth/login', { username, password }).then((response) => {
     // dispatch successful login
@@ -53,11 +57,16 @@ export const localSignIn = (username, password) => (dispatch, getState) => {
     console.log(error)
     dispatch({ type: FLASH_MSG, payload: { flashMsg: { error: true, displayMsg: true, msg: `raw error msg ... ${error}` } } })
   })
+}
 
-  // this is working lols!
-  // axios.get('/api/data').then((response) => {
-  //   console.log(response)
-  //   console.log('hi there are you working????')
-  // })
-  // dispatch({ type: LOCAL_SIGN_IN, payload: { user: 'Alan' }})
+export const localSignUp = (username, password, optParams = {}) => (dispatch, getState) => {
+  axios.post('/auth/signup', {username, password}).then((response) => {
+    if (response.data.error){
+      throw new Error(response.data.error)
+    }
+    console.log('no error ...')
+  }).catch((error) => {
+    console.log('error')
+    dispatch({ type: FLASH_MSG, payload: { flashMsg: {error: true, displayMsg: true, msg:  `raw error msg ... ${error}`}}})
+  })
 }
