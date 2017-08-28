@@ -7,6 +7,7 @@ import { Link, Route, withRouter } from 'react-router'
 import Header from './containers/Header/Header'
 import SecretData from './SecretData'
 import RegisterForm from './containers/RegisterForm/registerForm'
+import SigninForm from './containers/SigninForm/SigninForm'
 
 class App extends Component {
   // constructor() {
@@ -21,7 +22,7 @@ class App extends Component {
         <SecretData></SecretData>
         {/*  ROUTES */}
         <Route exact path='/register' component={RegisterForm}/>
-        <Route exact path='/signin' component={RegisterForm}/>
+        <Route exact path='/signin' component={SigninForm}/>
         
       </div>
     )
