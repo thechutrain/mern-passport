@@ -1,54 +1,34 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-
-// import NavLinks from './NavLinks'
-// import withLoading from '../../components/isLoadingHOC'
-// import './Header.css'
-// TODO - add proptypes
-
-// const Header = props => {
-// 	let Greeting
-// 	if (props.user === null) {
-// 		Greeting = <p>Hello guest</p>
-// 	} else if (Object.hasOwnProperty.call(props.user, 'firstName')) {
-// 		Greeting = (
-// 			<p>
-// 				Welcome back, <strong>{props.user.firstName}</strong>
-// 			</p>
-// 		)
-// 	} else if (Object.hasOwnProperty.call(props.user, 'local')) {
-// 		Greeting = (
-// 			<p>
-// 				Welcome back, <strong>{props.user.local.username} </strong>
-// 			</p>
-// 		)
-// 	} else {
-// 		Greeting = <p>Hello guest</p>
-// 	}
-// 	return (
-// 		<div className="Header">
-// 			<NavLinks _logout={props._logout} loggedIn={props.loggedIn} />
-// 			{Greeting}
-// 		</div>
-// 	)
-// }
+import  store from '../../../Redux/store'
+import { signOut } from '../../../Redux/authentication'
+import './Header.css'
 
 class Header extends Component {
 	constructor(){
 		super()
+		this.Logout = this.Logout.bind(this)
+	}
+	Logout(){
+		store.dispatch(signOut())
 	}
 	render() {
-		// const {user} = this.props
-		// <NavLinks _logout={this.props.logout} loggedIn={this.props.loggedIn} />
 		return (
 			<div className="Header">
 				<Link to="/register">register</Link>
+				<Link to="/signin">signin</Link>
+				<Link to="/" onClick={this.Logout}>Logout</Link>
 			</div>
 		)
 	}
 
 }
 
+const mapStateToProps = function(store){
+	return {
+		// user: store.authenticate.
+	}
+}
 export default Header
 // export default withLoading(Header)

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import './registerForm.css'
-import { localSignUp } from '../../Redux/authentication'
-import store from '../../Redux/store'
+import { localSignUp } from '../../../Redux/authentication'
+import store from '../../../Redux/store'
 
 /* renderField is a functional component, that renders an input in a 
 * redux-form
@@ -27,7 +27,7 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 */
 const RegisterForm = props => {
   const { handleSubmit, reset } = props // handleSubmit is injected by redux-form
-  const submissionHandler = function(formData) {
+  const submissionHandler = function (formData) {
     console.log(formData)
     debugger
     store.dispatch(localSignUp(formData.username, formData.password))
@@ -35,6 +35,7 @@ const RegisterForm = props => {
   }
   return (
     <form className="register-form" onSubmit={handleSubmit(submissionHandler)}>
+      <h2>Register!</h2>
       <Field name="username" label="username" type="text" component={renderField} />
       <Field name="password" label="password" type="password" component={renderField} />
       <Field name="confirmPassword" label="confirm password" type="password" component={renderField} />
@@ -47,7 +48,7 @@ const validator = values => {
   // validate username
   if (!values.username) {
     errors.username = 'Required'
-  } 
+  }
   // else if (values.username.length < 3) {
   //   errors.username = 'Username must be at least 3 characters'
   // }
