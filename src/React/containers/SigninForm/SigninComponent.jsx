@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import SigninForm from './SigninForm'
 import { Redirect } from 'react-router'
+import { localSignIn } from '../../../Redux/authentication'
+import store from '../../../Redux/store'
 
 class SigninComponent extends Component {
   constructor(){
@@ -12,8 +14,9 @@ class SigninComponent extends Component {
   }
   signinHandler (formData) {
     console.log(formData)
-    debugger
-    this.setState({ fireRedirect: true })
+    store.dispatch(localSignIn(formData.username, formData.password))
+    // debugger
+    // this.setState({ fireRedirect: true })
   }
   render (){
     return (

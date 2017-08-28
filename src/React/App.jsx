@@ -16,10 +16,9 @@ class App extends Component {
   render() {
     return (
       <div id="App">
+      <SecretData></SecretData>
         <Header></Header>
-        <h1>Hello world</h1>
         <br />
-        <SecretData></SecretData>
         {/*  ROUTES */}
         <Route exact path='/register' component={RegisterForm}/>
         <Route exact path='/signin' component={Signin}/>
