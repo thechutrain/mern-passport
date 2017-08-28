@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Link, Route } from 'react-router'
+import { Link, Route, withRouter } from 'react-router'
 // my components
 import Header from './containers/Header/Header'
 import SecretData from './SecretData'
-import RegisterForm from './components/registerForm'
+import RegisterForm from './containers/RegisterForm/registerForm'
 
 class App extends Component {
   // constructor() {
@@ -21,6 +21,7 @@ class App extends Component {
         <SecretData></SecretData>
         {/*  ROUTES */}
         <Route exact path='/register' component={RegisterForm}/>
+        <Route exact path='/signin' component={RegisterForm}/>
         
       </div>
     )
@@ -48,4 +49,4 @@ const mapStateToProps = function (store) {
   }
 }
 
-export default connect(mapStateToProps)(App)
+export default withRouter(connect(mapStateToProps)(App))
