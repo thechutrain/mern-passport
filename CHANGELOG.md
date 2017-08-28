@@ -34,3 +34,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - redux, authentication.js file that has basic actions, action creators, and reducer for managaing authentication state
 - created a `userOnlyHOC` component that wraps any component and will only display if a user is logged in 
+
+## [redux_02 & redux_03] - 2017-08-27
+### Added
+- added in redux-form
+- incorporated a registration form that has validation
+- registration form will call authentication's action creators and successfully registers a new user
