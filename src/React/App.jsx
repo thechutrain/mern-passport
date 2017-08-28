@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { Link, Route } from 'react-router'
+// my components
+import Header from './containers/Header/Header'
 import SecretData from './SecretData'
-// import SubscribeForm from './components/reduxForm'
 import RegisterForm from './components/registerForm'
 
 class App extends Component {
@@ -13,10 +15,13 @@ class App extends Component {
   render() {
     return (
       <div id="App">
+        <Header></Header>
         <h1>Hello world</h1>
         <br />
         <SecretData></SecretData>
-        <RegisterForm></RegisterForm>
+        {/*  ROUTES */}
+        <Route exact path='/register' component={RegisterForm}/>
+        
       </div>
     )
   }
@@ -35,7 +40,7 @@ App.propTypes = {
 /*  ===== connect to redux store  =========
 * - mapStateToProps function passes redux store as a prop into app component
 */
-const mapStateToProps = function(store) {
+const mapStateToProps = function (store) {
   return {
     user: store.authenticate.user,
     loggedIn: store.authenticate.loggedIn,
