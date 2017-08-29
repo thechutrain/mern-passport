@@ -35,7 +35,7 @@ class App extends Component {
 App.propTypes = {
   user: PropTypes.object.isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  flashMsg: PropTypes.object.isRequired,
+  // flashMsg: PropTypes.object.isRequired,
 }
 
 /*  ===== connect to redux store  =========
