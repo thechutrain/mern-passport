@@ -1,0 +1,45 @@
+div.AlertsComponent {
+  /* border: 1px solid pink; */
+  max-width: 85%;
+  /* position: fixed; */
+  margin: 0 auto;
+  z-index: 999;
+  background: grey;
+  border-radius: 5px;
+}
+
+div.alertWrapper {
+  display: inline-block;
+  width: 90%;
+  border: 1px dashed pink;
+}
+div.deleteWrapper {
+  display: inline-block;
+  width: 10%;
+  height: 100%;
+  /* border: 1px yellow dashed; */
+  border-left: 2px solid black;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-weight: 800;
+}
+
+div.deleteWrapper:hover {
+  background: red;
+  color: white;
+  cursor: pointer;
+}
+
+div.AlertsComponent p {
+  margin: 0;
+  padding: 0.5em;
+  position: relative;
+  /* display: inline-block; */
+  /* text-align: left; */
+
+}
+
+div.AlertsComponent > span.delete {
+  border: 1px solid red;
+  
+}

@@ -1,3 +1,49 @@
-div.AlertsComponent {
-  border: 1px solid pink;
-}
+div.AlertContainer {
+  border: 1px solid #a0a0a0;
+  position: fixed;
+  background: #cce5ff;
+  width: 80%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 100%;
+  min-height: 3em;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 0.5em 1em 0.5em 2em;
+  opacity: 0;
+  transform: translateY(-6em);
+  transition: opacity 0.75s ease-in;
+  transition: transform 0.65s ease; }
+  div.AlertContainer.display {
+    z-index: 999;
+    opacity: 1;
+    transform: translateY(0em); }
+  div.AlertContainer.success {
+    background: #d4edda; }
+  div.AlertContainer.error {
+    background: #f8d7da; }
+  div.AlertContainer div.text-wrapper span.alert-lead {
+    font-weight: 600;
+    font-size: 1.5em; }
+  div.AlertContainer div.text-wrapper p {
+    text-align: center;
+    margin: 0;
+    /* border: 1px dashed pink; */
+    font-family: 'Encode Sans', sans-serif;
+    font-size: 1.25em;
+    font-weight: 500; }
+  div.AlertContainer div.icon-wrapper {
+    border: 1px #7a808b solid;
+    border-radius: 2px;
+    padding: 0.25em;
+    width: 25px;
+    background: #b1b4ba; }
+    div.AlertContainer div.icon-wrapper:hover {
+      cursor: pointer;
+      background: #e15562; }
+    div.AlertContainer div.icon-wrapper img#alert-delete-icon {
+      width: 100%; }

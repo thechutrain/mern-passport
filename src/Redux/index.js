@@ -47,9 +47,9 @@ export default store
 // ========== testing =========
 // store.dispatch(auth.localSignIn('b', 'b')) // the correct password
 // store.dispatch(auth.signOut())  // this will actually happen first!
-store.dispatch(alerts.showMsg())
-// store.dispatch(alerts.updateMsg('hello', { success: true }, 2000))
-// store.dispatch(alerts.updateMsg('goodbye', { success: true }, 2000))
+// store.dispatch(alerts.showMsg())
+// store.dispatch(alerts.updateMsg('hello', { success: true }, 2))
+store.dispatch(alerts.updateMsg('goodbye', { success: true }, 5))
 // store.dispatch(alerts.setTimeInterval(2000))
 // store.dispatch(alerts.setTimeInterval(2200))
 // store.dispatch(alerts.setTimeInterval(6200))

@@ -58,7 +58,6 @@ export const clearMsg = () => (dispatch, getState) => {
   dispatch({ type: CLEAR_MSG})
 }
 
-
 export const delayedClearMsg = (ms) => (dispatch, getState) => {
   dispatch(_clearTimeInterval())
   const timeInterval = setTimeout(()=>{ dispatch(clearMsg())}, ms)
