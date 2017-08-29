@@ -52,8 +52,8 @@ export const localSignIn = (username, password) => (dispatch, getState) => {
     return dispatch({ type: LOCAL_SIGN_IN, payload: { user: response.data.user } })
   }).then(() => {
     console.log('about to dispatch flash message')
-    throw new Error('something went wrong hahahhaha')
-    debugger
+    // throw new Error('something went wrong hahahhaha')
+    // debugger
     dispatch({ type: FLASH_MSG, payload: { flashMsg: { error: false, displayMsg: true, msg: 'You have successfully signed in :)' } } })
   })
   .catch((error) => {
