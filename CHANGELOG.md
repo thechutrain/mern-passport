@@ -45,3 +45,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - tried to add 'react-router-redux' but will be rerouting with store's state instead
 - 
+
+## [redux_06] - 2017-08-28
+### Changed
+- combined store.js and reducer.js into a single `index.js` file in the `Redux/` directory
+- changed file paths in all the 'smart' components directing to the store

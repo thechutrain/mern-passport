@@ -1,17 +1,28 @@
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
-import reducer from './reducer'
+// Reducers
+import authenticationReducer from './authentication.js'
+import { reducer as formReducer } from 'redux-form'
 // testing purposes
 import * as auth from './authentication'
+/********* Redux Reducer*********
+*
+*/
+const reducers = combineReducers({
+  authenticate: authenticationReducer,
+  form: formReducer
+})
 
+/********* Redux Store *********
+*
+*/
 let store
-
 if (process.env.NODE_ENV === 'production') {
-	store = createStore(reducer, applyMiddleware(thunk, createLogger()))
+	store = createStore(reducers, applyMiddleware(thunk, createLogger()))
 } else {
 	store = createStore(
-		reducer,
+		reducers,
 		compose(
 			// with logger in console
 			// applyMiddleware(thunk, createLogger()),
@@ -24,7 +35,11 @@ if (process.env.NODE_ENV === 'production') {
 	)
 }
 
+/********* Exports *********
+*
+*/
 export default store
+
 
 // ========== testing =========
 // store.dispatch(auth.localSignIn('b', 'b')) // the correct password

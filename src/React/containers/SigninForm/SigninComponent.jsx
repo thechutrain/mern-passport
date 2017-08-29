@@ -3,7 +3,7 @@ import SigninForm from './SigninForm'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { localSignIn } from '../../../Redux/authentication'
-import store from '../../../Redux/store'
+import store from '../../../Redux'
 
 class SigninComponent extends Component {
   constructor(){

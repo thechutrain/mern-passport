@@ -5,7 +5,7 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 // Redux dependencies
 import { Provider } from 'react-redux'
-import store from './Redux/store'
+import store from './Redux'
 
 ReactDOM.render(
 	<Provider store={store} >

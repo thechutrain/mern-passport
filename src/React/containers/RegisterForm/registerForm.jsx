@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import './registerForm.css'
 import { localSignUp } from '../../../Redux/authentication'
-import store from '../../../Redux/store'
+import store from '../../../Redux'
 
 /* renderField is a functional component, that renders an input in a 
 * redux-form
