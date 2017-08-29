@@ -47,17 +47,17 @@ export default function reducer(state=defaultState, action){
 */
 export const showMsg = () => ({ type: SHOW_MSG})
 
-export const clearMsg = () => (dispatch, getState) => {
-  dispatch(_clearTimeInterval)
-  dispatch({ type: CLEAR_MSG})
-}
-
 // helper action creator that shouldn't be used outside
 const _clearTimeInterval = () => (dispatch, getState) => {
   if (getState().alerts.timeInterval){
     dispatch({ type: CLEAR_TIME_INTERVAL })
   }
 }
+export const clearMsg = () => (dispatch, getState) => {
+  dispatch(_clearTimeInterval())
+  dispatch({ type: CLEAR_MSG})
+}
+
 
 export const delayedClearMsg = (ms) => (dispatch, getState) => {
   dispatch(_clearTimeInterval())
