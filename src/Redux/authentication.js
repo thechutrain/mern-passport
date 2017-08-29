@@ -49,8 +49,9 @@ export const signOut = () => (dispatch, getState) => {
   // making the axios post to route clearsCookie storing session id
   return axios.post('/auth/logout').then(()=> {
     // throw new Error('yep')
-    dispatch({ type: SIGN_OUT })
-    dispatch(updateMsg('Successful signin', {success:true}, 5))
+    return dispatch({ type: SIGN_OUT })
+  }).then(() => {
+    dispatch(updateMsg('Successful sign out', {success:true}, 5))
   }).catch((error) => {
     // TODO - update with alerts.js redux file
     dispatch(updateMsg('Failed Signin', {error:true}, 5))
