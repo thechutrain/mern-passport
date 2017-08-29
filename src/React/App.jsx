@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link, Route, withRouter } from 'react-router'
 // my components
+import Alerts from './containers/Alerts/Alerts'
 import Header from './containers/Header/Header'
 import SecretData from './SecretData'
 import RegisterForm from './containers/RegisterForm/registerForm'
@@ -16,6 +17,7 @@ class App extends Component {
   render() {
     return (
       <div id="App">
+      <Alerts></Alerts>
       <SecretData></SecretData>
         <Header></Header>
         <br />
