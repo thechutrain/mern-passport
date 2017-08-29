@@ -18,10 +18,10 @@ class App extends Component {
     return (
       <div id="App">
       <Alerts></Alerts>
-      <SecretData></SecretData>
         <Header></Header>
         <br />
         {/*  ROUTES */}
+        <Route exact path='/' component={SecretData} />
         <Route exact path='/register' component={RegisterForm}/>
         <Route exact path='/signin' component={Signin}/>
         
