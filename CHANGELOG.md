@@ -53,3 +53,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added 
 - added alerts reducer (shows msg, clears msg, updates msg, sets time interval for clearing)
+
+### BUG
+- transition on my alert component is not working with normal css, need to use transition group component!
