@@ -43,7 +43,15 @@ export default function reducer(state = defaultState, action) {
 /* ======= Action creators =========
 *
 */
-export const signOut = () => ({ type: SIGN_OUT })
+// export const signOut = () => ({ type: SIGN_OUT })
+export const signOut = () => (dispatch, getState) => {
+  // making the axios post to route clearsCookie storing session id
+  return axios.post('/auth/logout').then(()=> {
+    dispatch({ type: SIGN_OUT })
+  }).catch((error) => {
+    dispatch({ type: FLASH_MSG, payload: { flashMsg: { error: true, displayMsg: true, msg: `raw error msg ... ${error}` } } })
+  })
+}
 
 export const localSignIn = (username, password) => (dispatch, getState) => {
   return axios.post('/auth/login', { username, password }).then((response) => {

@@ -40,3 +40,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - added in redux-form
 - incorporated a registration form that has validation
 - registration form will call authentication's action creators and successfully registers a new user
+
+## [redux_05b] - 2017-08-28
+### Added
+- tried to add 'react-router-redux' but will be rerouting with store's state instead
+- 
