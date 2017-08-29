@@ -3,15 +3,18 @@ import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
 // Reducers
 import authenticationReducer from './authentication.js'
+import alertsReducer from './alerts.js'
 import { reducer as formReducer } from 'redux-form'
 // testing purposes
 import * as auth from './authentication'
+import * as alerts from './alerts'
 /********* Redux Reducer*********
 *
 */
 const reducers = combineReducers({
   authenticate: authenticationReducer,
-  form: formReducer
+  alerts: alertsReducer,
+  form: formReducer,
 })
 
 /********* Redux Store *********
@@ -43,6 +46,7 @@ export default store
 
 // ========== testing =========
 // store.dispatch(auth.localSignIn('b', 'b')) // the correct password
-store.dispatch(auth.signOut())  // this will actually happen first!
+// store.dispatch(auth.signOut())  // this will actually happen first!
+store.dispatch(alerts.showMsg())
 
 // store.dispatch(auth.localSignIn('b', 'wrong password'))  // the wrong password
