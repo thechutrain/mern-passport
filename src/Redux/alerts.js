@@ -59,7 +59,7 @@ export const delayedClearMsg = (ms) => (dispatch, getState) => {
   dispatch({ type: SET_TIME_INTERVAL, payload: timeInterval })
 }
 
-export const updateMsg = (msg, opts = { error: false, success:true }, msDelay) => (dispatch, getState) => {
-  dispatch({ type: UPDATE_MSG, payload: { msg, error: opts.error, success: opts.success}})
-  dispatch(delayedClearMsg(msDelay))
+export const updateMsg = (msg, { error = false, success = true }, secondDelay) => (dispatch, getState) => {
+  dispatch({ type: UPDATE_MSG, payload: { msg, error, success}})
+  dispatch(delayedClearMsg(secondDelay * 1000))
 }
