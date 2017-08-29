@@ -3,3 +3,7 @@ div.Header {
   flex-direction: column;
   border: 1px dashed green;
 }
+
+div.Header .hidden {
+  display: none;
+}
