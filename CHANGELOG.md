@@ -50,6 +50,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - combined store.js and reducer.js into a single `index.js` file in the `Redux/` directory
 - changed file paths in all the 'smart' components directing to the store
+- updated flashMsgs with `updateMsg()` action creator & updated styles
+- conditionally rendering navigation based on whether one is logged in or not
 
 ### Added 
 - added alerts reducer (shows msg, clears msg, updates msg, sets time interval for clearing)

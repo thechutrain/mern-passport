@@ -29,7 +29,7 @@ const RegisterForm = props => {
   const { handleSubmit, reset } = props // handleSubmit is injected by redux-form
   const submissionHandler = function (formData) {
     console.log(formData)
-    debugger
+    // debugger
     store.dispatch(localSignUp(formData.username, formData.password))
     reset()
   }
