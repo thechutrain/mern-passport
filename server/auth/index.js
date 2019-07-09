@@ -59,25 +59,25 @@ router.post("/logout", (req, res) => {
   }
 });
 
-router.post("/signup", (req, res) => {
-  const { username, password } = req.body;
-  // ADD VALIDATION
-  User.findOne({ "local.username": username }, (err, userMatch) => {
-    if (userMatch) {
-      return res.json({
-        error: `Sorry, already a user with the username: ${username}`,
-      });
-    }
-    const newUser = new User({
-      username,
-      "local.username": username,
-      "local.password": password,
-    });
-    newUser.save((err, savedUser) => {
-      if (err) return res.json(err);
-      return res.json(savedUser);
-    });
-  });
-});
+// router.post("/signup", (req, res) => {
+//   const { username, password } = req.body;
+//   // ADD VALIDATION
+//   User.findOne({ "local.username": username }, (err, userMatch) => {
+//     if (userMatch) {
+//       return res.json({
+//         error: `Sorry, already a user with the username: ${username}`,
+//       });
+//     }
+//     const newUser = new User({
+//       username,
+//       "local.username": username,
+//       "local.password": password,
+//     });
+//     newUser.save((err, savedUser) => {
+//       if (err) return res.json(err);
+//       return res.json(savedUser);
+//     });
+//   });
+// });
 
 module.exports = router;

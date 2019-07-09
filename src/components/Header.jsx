@@ -1,5 +1,5 @@
 import React from "react";
-// TODO - add proptypes
+// TODO: - add proptypes
 
 const Header = props => {
   let Greeting;
