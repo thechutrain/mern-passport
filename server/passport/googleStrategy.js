@@ -8,11 +8,6 @@ const strategy = new GoogleStrategy(
     callbackURL: "http://localhost:8080/auth/google/callback",
   },
   function(accessToken, refreshToken, profile, done) {
-    // testing
-    // console.log("===== GOOGLE PROFILE =======");
-    // console.log(profile);
-    // console.log("======== END ===========");
-    // code
     const { id, name } = profile;
     // TODO: swap over to findOrCreate if avail in mongoose
     User.findOne({ "google.googleId": id }, (err, userMatch) => {
@@ -26,11 +21,6 @@ const strategy = new GoogleStrategy(
       if (userMatch) {
         return done(null, userMatch);
       } else {
-        // if no user in our db, create a new user with that googleId
-        // console.log("====== PRE SAVE =======");
-        // console.log(id);
-        // console.log(profile);
-        // console.log("====== post save ....");
         const newGoogleUser = new User({
           "google.googleId": id,
           firstName: name.givenName,

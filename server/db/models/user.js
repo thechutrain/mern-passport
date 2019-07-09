@@ -55,18 +55,18 @@ const userSchema = new Schema({
   //     type: Array,
   //   },
   // },
-  local: {
-    username: {
-      type: String,
-      unique: false,
-      required: false,
-    },
-    password: {
-      type: String,
-      unique: false,
-      required: false,
-    },
-  },
+  // local: {
+  //   username: {
+  //     type: String,
+  //     unique: false,
+  //     required: false,
+  //   },
+  //   password: {
+  //     type: String,
+  //     unique: false,
+  //     required: false,
+  //   },
+  // },
   google: {
     googleId: {
       type: String,
@@ -74,13 +74,7 @@ const userSchema = new Schema({
     },
   },
 });
-// Define userSchema
-// const userSchema = new Schema({
-//  ...
-// 	photos: []
-// })
 
-// Define schema methods
 userSchema.methods = {
   checkPassword: function(inputPassword) {
     return bcrypt.compareSync(inputPassword, this.local.password);
