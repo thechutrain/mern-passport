@@ -18,6 +18,21 @@ router.get(
   })
 );
 
+router.get(
+  "/tumblr/callback",
+  passport.authenticate("tumblr", {
+    successRedirect: "/#",
+    failureRedirect: "/login",
+  })
+);
+// console.log(passport);
+router.get(
+  "/tumblr",
+  passport.authenticate("tumblr", {
+    scope: "openid profile email",
+  })
+);
+
 // this route is just used to get the user basic info
 router.get("/user", (req, res, next) =>
   req.user ? res.json({ user: req.user }) : res.json({ user: null })
