@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-// const User = require("../db/models/user");
 const passport = require("../passport");
 
 router.get(
@@ -14,21 +13,6 @@ router.get(
 router.get(
   "/google",
   passport.authenticate("google", {
-    scope: "openid profile email",
-  })
-);
-
-router.get(
-  "/tumblr/callback",
-  passport.authenticate("tumblr", {
-    successRedirect: "/#",
-    failureRedirect: "/login",
-  })
-);
-// console.log(passport);
-router.get(
-  "/tumblr",
-  passport.authenticate("tumblr", {
     scope: "openid profile email",
   })
 );

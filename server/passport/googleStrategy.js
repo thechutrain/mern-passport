@@ -1,5 +1,5 @@
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
-const User = require("../db/models/user");
+const { User } = require("../db/models/index");
 
 const strategy = new GoogleStrategy(
   {
@@ -9,6 +9,7 @@ const strategy = new GoogleStrategy(
   },
   function(accessToken, refreshToken, profile, done) {
     const { id, name } = profile;
+    console.log(profile);
     // TODO: swap over to findOrCreate if avail in mongoose
     User.findOne({ "google.googleId": id }, (err, userMatch) => {
       // handle errors here:

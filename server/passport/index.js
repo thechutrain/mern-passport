@@ -1,8 +1,7 @@
 const passport = require("passport");
 // const LocalStrategy = require("./localStrategy");
 const GoogleStrategy = require("./googleStrategy");
-const TumblrStrategy = require("./tumblrStrategy");
-const User = require("../db/models/user");
+const { User } = require("../db/models");
 
 passport.serializeUser((user, done) => {
   done(null, { _id: user._id });
@@ -11,7 +10,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
   User.findOne(
     { _id: id },
-    "firstName lastName local.username",
+    "firstName lastName username following current",
     (err, user) => {
       done(null, user);
     }
@@ -21,6 +20,5 @@ passport.deserializeUser((id, done) => {
 // ==== Register Strategies ====
 // passport.use(LocalStrategy);
 passport.use(GoogleStrategy);
-passport.use(TumblrStrategy);
 
 module.exports = passport;

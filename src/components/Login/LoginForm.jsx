@@ -5,7 +5,6 @@ export default () => (
   <div className="LoginForm">
     <a href="/auth/google">
       <img src={googleButton} alt="sign into Google Button" />
-    </a>{" "}
-    <a href="/auth/tumblr">Tumblr somehow</a>
+    </a>
   </div>
 );
